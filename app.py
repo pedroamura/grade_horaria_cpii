@@ -20,9 +20,11 @@ app.config['MAIL_DEFAULT_SENDER'] = ('Reserva de Laboratórios', app.config['MAI
 
 mail = Mail(app)
 
-ARQUIVO_CSV = "grade_horaria.csv"
-ARQUIVO_RESERVAS = "reservas.json"
-ARQUIVO_USUARIOS = "usuarios.csv"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+ARQUIVO_CSV = os.path.join(BASE_DIR, "grade_horaria.csv")
+ARQUIVO_RESERVAS = os.path.join(BASE_DIR, "reservas.json")
+ARQUIVO_USUARIOS = os.path.join(BASE_DIR, "usuarios.csv")
 
 
 def enviar_email_async(app_ctx, msg):
@@ -237,4 +239,4 @@ def cancelar_reserva():
 
 if __name__ == "__main__":
     limpar_reservas_expiradas()
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(debug=True)
